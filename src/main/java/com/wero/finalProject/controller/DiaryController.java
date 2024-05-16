@@ -32,13 +32,6 @@ public class DiaryController {
         return response;
     }
 
-//    @GetMapping("/selectAll")
-//    public ResponseEntity<? super GetPostResponseDto> selectAll
-//            (@AuthenticationPrincipal String userId) {
-//        ResponseEntity<? super GetPostResponseDto> response=postService.getPostAll();
-//        return response;
-//    }
-
     @GetMapping("/{diaryId}")//get방식==>조회(아이디로)
     public ResponseEntity<? super GetDiaryResponseDto> getPost
             (@PathVariable Integer diaryId,//url경로에 있는 diaryId 받기

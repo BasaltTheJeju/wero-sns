@@ -1,9 +1,12 @@
 package com.wero.finalProject.dto.request.diary;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @작성자:최기원
@@ -25,6 +28,6 @@ public class DiaryRequestDto {
     @NotBlank
     private String song;
 
-//    @NotNull
-//    private List<String> postImageList;
+    @NotNull
+    private List<String> diaryImageList;
 }

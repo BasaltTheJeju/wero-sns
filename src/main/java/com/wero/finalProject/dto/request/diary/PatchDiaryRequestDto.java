@@ -1,9 +1,12 @@
 package com.wero.finalProject.dto.request.diary;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * @작성자:최기원
@@ -22,4 +25,6 @@ public class PatchDiaryRequestDto {
     private String emotion;
     @NotBlank
     private String song;
+    @NotNull
+    private List<String> diaryImageList;
 }

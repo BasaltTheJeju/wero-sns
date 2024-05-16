@@ -1,11 +1,7 @@
 package com.wero.finalProject.service.implement;
 
-import com.wero.finalProject.Repository.BookMarkRepository;
-import com.wero.finalProject.Repository.DiaryRepository;
-import com.wero.finalProject.Repository.UserRepository;
-import com.wero.finalProject.domain.BookMarkEntity;
-import com.wero.finalProject.domain.DiaryEntity;
-import com.wero.finalProject.domain.UserEntity;
+import com.wero.finalProject.Repository.*;
+import com.wero.finalProject.domain.*;
 import com.wero.finalProject.dto.request.diary.DiaryRequestDto;
 import com.wero.finalProject.dto.request.diary.PatchDiaryRequestDto;
 import com.wero.finalProject.dto.response.ResponseDto;
@@ -33,16 +29,28 @@ public class DiaryServiceImplement implements DiaryService {
     private final UserRepository userRepository;
     private final DiaryRepository diaryRepository;
     private final BookMarkRepository bookMarkRepository;
+    private final DiaryImageRepository diaryImageRepository;
 
     @Override
     public ResponseEntity<? super DiaryResponseDto> createDiary(DiaryRequestDto dto, String userId) {
 
         try{
-            UserEntity user = userRepository.findByUserId(userId);
+            UserEntity user = userRepository.findByUserId(userId);//유저아이디로 유저엔티티 꺼내오는거 기억하자!!
             //OBJECT => 메모리에 주소값으로 저장
             if(user == null) return  DiaryResponseDto.notExistUser();
             DiaryEntity diaryEntity =new DiaryEntity(dto,user);
             diaryRepository.save(diaryEntity);
+
+            int diaryId=diaryEntity.getDiaryId();
+            List<String> diaryImageList = dto.getDiaryImageList();
+            List<DiaryImageEntity> diaryImageEntities = new ArrayList<>();
+
+            for(String image: diaryImageList){
+                DiaryImageEntity imageEntity=new DiaryImageEntity(diaryId,image);
+                diaryImageEntities.add(imageEntity);
+            }
+
+            diaryImageRepository.saveAll(diaryImageEntities);
 
         }catch (Exception exception){
             exception.printStackTrace();
@@ -55,16 +63,19 @@ public class DiaryServiceImplement implements DiaryService {
     @Override
     public ResponseEntity<? super GetDiaryResponseDto> getDiary(Integer diaryId) {
         DiaryEntity diaryEntity;//일기 엔티티 생성한다
+        List<DiaryImageEntity> imageEntities=new ArrayList<>();
         try {
             Optional<DiaryEntity> optionalPostEntity= diaryRepository.findById(diaryId);//아이디로 해당 글이 있는지 확인한다
             if(!optionalPostEntity.isPresent()) return GetDiaryResponseDto.notExistDiary();//해당 글이 존재하지 않는다면 에러를 보내준다
             diaryEntity =optionalPostEntity.get();//해당 글이 존재한다면 가져온다
 
+            imageEntities=diaryImageRepository.findByDiaryId(diaryId);
+
         }catch (Exception exception){
             exception.printStackTrace();
             return ResponseDto.dataBaseError();
         }
-        return  GetDiaryResponseDto.success(diaryEntity);//GetDiaryResponseDto의 success함수에 가져온 일기 엔티티를 넣어서 호출한다
+        return  GetDiaryResponseDto.success(diaryEntity,imageEntities);//GetDiaryResponseDto의 success함수에 가져온 일기 엔티티를 넣어서 호출한다
     }
 
     @Override
@@ -77,6 +88,7 @@ public class DiaryServiceImplement implements DiaryService {
             Optional<DiaryEntity> diaryEntity = diaryRepository.findById(diaryId);//아이디로 해당 글이 있는지 확인
             if(!diaryEntity.isPresent()) return  DeleteDiaryResponseDto.notExistDiary();//해당 글이 존재하지 않는다면 에러를 보내준다
 
+            diaryImageRepository.deleteByDiaryId(diaryId);
             diaryRepository.deleteById(diaryId);//해당 아이디로 글을 삭제한다
 
         }catch (Exception exception){
@@ -98,6 +110,17 @@ public class DiaryServiceImplement implements DiaryService {
             patchedDiary.patchDiary(dto);//PatchEntity의 메서드 호출 ==> dto 에 담긴 내용으로 수정해준다
 
             diaryRepository.save(patchedDiary);//수정된 일기를 저장한다
+
+            diaryImageRepository.deleteByDiaryId(diary_id);
+            List<String> diaryImageList = dto.getDiaryImageList();
+            List<DiaryImageEntity> diaryImageEntities = new ArrayList<>();
+
+            for(String image: diaryImageList){
+                DiaryImageEntity imageEntity=new DiaryImageEntity(diary_id,image);
+                diaryImageEntities.add(imageEntity);
+            }
+
+            diaryImageRepository.saveAll(diaryImageEntities);
 
         }catch (Exception exception){
             exception.printStackTrace();

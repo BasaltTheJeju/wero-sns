@@ -23,12 +23,14 @@ public class DiaryListItem {
     private String diaryContent;
     private String emotion;
     private String song;
+    private String diaryImage;
 
     public DiaryListItem(DiaryEntity diaryEntity) {//일기 엔티티를 받아서
         this.diaryId = diaryEntity.getDiaryId();//속성들에다가 넣어준다
         this.diaryContent = diaryEntity.getDiaryContent();
         this.emotion = diaryEntity.getEmotion();
         this.song = diaryEntity.getSong();
+        this.diaryImage = diaryEntity.getDiaryImage();
     }
 
     public static List<DiaryListItem> getList(List<DiaryEntity> diaryEntities) {//일기 리스트를 받는다

@@ -32,9 +32,5 @@ public class DiaryResponseDto extends ResponseDto {//응답 관련 dto
         return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
     }
 
-//   public static ResponseEntity<ResponseDto> notExistPost(){
-//        ResponseDto result=new ResponseDto(ResponseCode.NOT_EXIST_BOARD,ResponseMessage.NOT_EXIST_BOARD);
-//        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
-//   }
 
 }
