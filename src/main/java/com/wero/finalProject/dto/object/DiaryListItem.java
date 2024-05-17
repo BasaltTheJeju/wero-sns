@@ -24,6 +24,8 @@ public class DiaryListItem {
     private String emotion;
     private String song;
     private String diaryImage;
+    private int bookMarkCount;
+    private String userId;
 
     public DiaryListItem(DiaryEntity diaryEntity) {//일기 엔티티를 받아서
         this.diaryId = diaryEntity.getDiaryId();//속성들에다가 넣어준다
@@ -31,6 +33,8 @@ public class DiaryListItem {
         this.emotion = diaryEntity.getEmotion();
         this.song = diaryEntity.getSong();
         this.diaryImage = diaryEntity.getDiaryImage();
+        this.bookMarkCount=diaryEntity.getBookMarkCount();
+        this.userId=diaryEntity.getWriter().getUserId();
     }
 
     public static List<DiaryListItem> getList(List<DiaryEntity> diaryEntities) {//일기 리스트를 받는다
