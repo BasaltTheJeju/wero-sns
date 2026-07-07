@@ -15,6 +15,13 @@ The project consists of a React-based frontend and a Spring Boot-based REST API 
 
 ---
 
+## Project Resources
+
+| Resource | Link |
+|-----------|--------|
+| Project Presentation | [View PPT](https://hyeonmooam.my.canva.site/dagi2irk2ok) |
+| Documentation | Notion |
+
 ## Architecture
 
 - Implemented CI/CD pipelines using GitHub Actions.
