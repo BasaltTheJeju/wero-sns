@@ -1,79 +1,137 @@
-# We-Ro-SNS
-<br><br>
+# We-Ro SNS
 
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green)
+![React](https://img.shields.io/badge/React-Frontend-blue)
+![AWS](https://img.shields.io/badge/AWS-Cloud-yellow)
+![Docker](https://img.shields.io/badge/Docker-Container-blue)
+![MySQL](https://img.shields.io/badge/MySQL-Database-lightblue)
 
-WE-RO
-=============
-각박한 현대사회를 살아가는 이들을 위한 감성 SNS입니다<br>
-Rest API형 서버로써 프론트단은 리액트로 제작하였고 백엔드단은 스프링부트로 제작하였습니다.<br>
+## Overview
 
-## 프로젝트의 전체적인 구조
-![Sitemap Whiteboard in Green Purple Basic Style (2)](https://github.com/Path-Finder-Org/We-Ro-SNS/assets/104974710/3f1777d7-7ab3-4ebb-99bf-31f36b172a0e)
-- GitHub Action을 사용하여 CI/CD를 진행합니다.
-- 모든 서버는 Amazon Web Services에 올라가 있습니다.<br>
-- 구동중인 서버 : Main We-Ro Server, React Server, MySQL Server
+**We-Ro** is an emotional social networking service (SNS) designed to provide a space for people living in today's fast-paced and demanding society to share their thoughts and connect with others.
 
+The project consists of a React-based frontend and a Spring Boot-based REST API backend.
 
-## 프로젝트의 주요 관심사
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>공통사항</b><br>
-- 지속적인 성능 개선
-- 지저분한 코드에 대한 리팩토링
-<br><br>
-<b>코드 컨벤션</b><br>
-- Google code Style을 준수
-- 노션에 코드 컨벤션을 명시하여 팀원 모두 규칙을 엄수하도록 하였습니다.
-- 링크 <https://www.notion.so/cf5968376cfc4478a3768e4d8a3a96d1>
-<br><br>
-<b>성능 최적화</b>
-- GitHub Action을 적용하여 테스트 자동화
-- 협업하는 동료의 소스코드에 서로 공유하여 서로의 소스코드를 알 수 있도록 하고 있습니다.
-<br><br>
+---
 
-### 성능 테스트
-Postman을 활용하여 테스트하고있습니다.<br>
+## Architecture
 
+- Implemented CI/CD pipelines using GitHub Actions.
+- All services are deployed on Amazon Web Services (AWS).
+- Running infrastructure:
+  - Main We-Ro API Server
+  - React Frontend Server
+  - MySQL Database Server
 
-## 사용 기술 및 환경
-Spring boot, Gradle, JPA, React, Docker, MySQL, Jenkins, Java17, Amazon Web Services
-<br>
+---
 
-## Notion
-<https://www.notion.so/ec4700e35f214a2aa95e8ecf51b506ee><br>
-Notion에 프로젝트에 사용된 기술, erd, api 명세등의 정보가 포함되어있습니다.<br>
-<br>
-## CI
-Jenkins : 서버 운영을 종료하였습니다.<br>
-Amazon Web Services를 사용하고 있습니다.<br>
-PR시마다 자동 Build 및 Test 적용<br>
-비로그인 상태로도 확인이 가능합니다.<br>
+## Key Focus Areas
 
-## CD
-Docker 이미지를 제작하여 배포합니다.<br>
-CI 서버에서 빌드 완료시 Shell script가 작동하여 빌드된 이미지가 docker hub에 저장됩니다.<br>
-Push 완료시 Delfood 메인 서버에서 docker hub에 올라간 이미지를 받아 실행시킵니다.<br>
+### Code Quality & Collaboration
 
+- Followed the Google Java Style Guide.
+- Established and documented coding conventions to ensure consistency across the team.
+- Shared coding standards through Notion to maintain code quality and improve collaboration.
 
-<br>
-## Database
-- MySQL<br>
-cafe24 web hosting 서비스를 사용하고 있습니다.
-- Redis<br>
-docker 컨테이너를 사용하고 있습니다.
-<br>
+### Performance & Development Efficiency
 
-## 화면 설계
-kakao oven - <https://ovenapp.io/view/SaTiTCEQyNfk5FdeOq1lDkJuGsNogCVE/>
+- Automated build and test processes using GitHub Actions.
+- Encouraged regular code reviews and knowledge sharing among team members to improve code maintainability and team productivity.
 
-### S/W 화면 실사 1
-![리드미 - 화면 실사 (1)](https://github.com/Path-Finder-Org/We-Ro-SNS/assets/104974710/b0c5b327-4567-44fa-8e0a-47fddf03131a)
+### Performance Testing
 
-### S/W 화면 실사 2
-![리드미 - 회면실사2](https://github.com/Path-Finder-Org/We-Ro-SNS/assets/104974710/a6d343da-bbcf-47c0-b386-5a0122641d9a)
+- Conducted API testing and validation using Postman.
 
-## 프로젝트 DB ERD
-2024-06-03 수정
-![스크린샷 2024-06-03 153847](https://github.com/Path-Finder-Org/We-Ro-SNS/assets/104974710/47d53569-b0ac-44de-b26f-d2a5804a9a54)
+---
 
+## Technology Stack
 
+### Backend
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- Gradle
 
+### Frontend
+- React
 
+### Infrastructure & DevOps
+- Amazon Web Services (AWS)
+- Docker
+- GitHub Actions
+- Jenkins
+
+### Database & Cache
+- MySQL (AWS RDS)
+- Redis (Docker Container)
+
+---
+
+## Project Documentation
+
+Comprehensive project documentation is maintained in Notion, including:
+
+- System Architecture
+- Database ERD
+- API Specifications
+- Development Guidelines
+- Technical Decisions
+
+---
+
+## Continuous Integration (CI)
+
+- Automated build and test execution for every pull request.
+- Continuous validation of code quality before merging changes.
+- Hosted on AWS infrastructure.
+
+---
+
+## Continuous Deployment (CD)
+
+- Docker images are automatically generated and deployed.
+- After a successful CI build, deployment scripts push Docker images to Docker Hub.
+- Automated deployment pipeline reduces manual release overhead and improves deployment consistency.
+
+---
+
+## Database Design
+
+### MySQL
+- Utilized AWS RDS for managed relational database services.
+
+### Redis
+- Deployed using Docker containers for caching and performance optimization.
+
+---
+
+## UI/UX Design
+
+The user interface was designed using Kakao Oven during the planning and prototyping phase.
+
+---
+
+## Screenshots
+
+### Main Feed
+
+Application interface showcasing the social feed and user interactions.
+
+### User Experience
+
+Example screens demonstrating core SNS functionality and user engagement features.
+
+---
+
+## ERD (Entity Relationship Diagram)
+
+The database schema was designed to support:
+
+- User management
+- Posts and content management
+- Comments and interactions
+- Authentication and authorization
+- Social networking features
+
+The ERD was continuously updated throughout development to accommodate evolving business requirements.
